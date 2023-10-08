@@ -14,11 +14,13 @@ export default function ImageGallery({ searchText }) {
   const [viewImage, setViewImage] = useState({ urlImage: '', tags: [] });
   const [isLoadMoreButton, setIsLoadMoreButton] = useState(false);
 
+  // при зміні запиту очищаємо масив з картинками і встановлюємо дефолтну першу сторінку
   useEffect(() => {
     setImages([]);
     setPages(1);
   }, [searchText]);
 
+  // робимо запит на сервер при зміні значення запиту або поточної сторінки
   useEffect(() => {
     if (!searchText) return;
     setStatus('pending');
