@@ -1,22 +1,19 @@
 import { Container } from './App.styled';
 import ImageGallery from '../components/ImageGallery/ImageGallery';
 import { Searchbar } from '../components/Searchbar/Searchbar';
-import { Component } from 'react';
+import { useState } from 'react';
 
-export class App extends Component {
-  state = {
-    searchText: '',
+export function App() {
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearch = searchText => {
+    setSearchText(searchText);
   };
 
-  handleSearch = searchText => {
-    this.setState({ searchText });
-  };
-  render() {
-    return (
-      <Container>
-        <Searchbar handleSearch={this.handleSearch}></Searchbar>
-        <ImageGallery searchText={this.state.searchText} />
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <Searchbar handleSearch={handleSearch}></Searchbar>
+      <ImageGallery searchText={searchText} />
+    </Container>
+  );
 }
